@@ -11,7 +11,6 @@ import LoadingScreen from './components/LoadingScreen'
 
 // Lazy imports (below fold)
 const ExperienceSection = lazy(() => import('./components/ExperienceSection'))
-const ServicesSection = lazy(() => import('./components/ServicesSection'))
 const StyleExplorer = lazy(() => import('./components/StyleExplorer'))
 const GallerySection = lazy(() => import('./components/GallerySection'))
 const AboutSection = lazy(() => import('./components/AboutSection'))
@@ -72,10 +71,6 @@ export default function App() {
         {/* Below fold — lazy */}
         <Suspense fallback={<SectionFallback />}>
           <ExperienceSection />
-        </Suspense>
-
-        <Suspense fallback={<SectionFallback />}>
-          <ServicesSection />
         </Suspense>
 
         <Suspense fallback={<SectionFallback />}>
