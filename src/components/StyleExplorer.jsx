@@ -29,22 +29,6 @@ const styles = [
     bgAccent: 'rgba(184,132,61,0.08)',
   },
   {
-    id: 'arabesque',
-    label: 'Arabesque',
-    description:
-      "Volutes et motifs arabesques rasés dans le dégradé. Une expression artistique unique taillée directement dans le crâne.",
-    color: '#EFD9B1',
-    bgAccent: 'rgba(239,217,177,0.05)',
-  },
-  {
-    id: 'graphique',
-    label: 'Graphique',
-    description:
-      "Dessins géométriques et motifs précis — carrés, losanges, logos — gravés dans la coupe. La créativité au service du style.",
-    color: '#B8843D',
-    bgAccent: 'rgba(184,132,61,0.08)',
-  },
-  {
     id: 'naturel',
     label: 'Naturel',
     description:
@@ -54,23 +38,21 @@ const styles = [
   },
   {
     id: 'barbe',
-    label: 'Barbe & Couleur',
+    label: 'Barbe soignée',
     description:
-      "Contours précis, couleur maîtrisée, longueur harmonisée avec la coupe. La barbe et la coloration comme éléments centraux d'un style affirmé.",
+      "Contours précis, lignes dessinées, longueur harmonisée avec la coupe. La barbe comme élément central du style masculin.",
     color: '#B8843D',
     bgAccent: 'rgba(184,132,61,0.08)',
   },
 ]
 
-// Media mapped by style id — SVGs animate automatically, photos are cropped to fit
+// Each style mapped to the media file whose name matches it
 const MEDIA = {
-  classique: { path: 'images/gallery/coupe-classique-enfant.jpg', fit: 'cover' },
-  degrade:   { path: 'videos/video-02.svg',                       fit: 'cover' },
-  structure: { path: 'videos/video-01.svg',                       fit: 'cover' },
-  arabesque: { path: 'images/gallery/coupe-arabesque.jpg',        fit: 'cover' },
-  graphique: { path: 'images/gallery/coupe-design-geometrique.jpg', fit: 'cover' },
-  naturel:   { path: 'images/gallery/coupe-design-feuille.jpg',   fit: 'cover' },
-  barbe:     { path: 'images/gallery/couleur-platine.jpg',        fit: 'cover' },
+  classique: { path: 'images/gallery/coupe-classique-enfant.jpg',     fit: 'cover' },
+  degrade:   { path: 'videos/video-02.svg',                           fit: 'cover' },
+  structure: { path: 'images/gallery/coupe-design-geometrique.jpg',   fit: 'cover' },
+  naturel:   { path: 'images/gallery/coupe-design-feuille.jpg',       fit: 'cover' },
+  barbe:     { path: 'images/gallery/couleur-platine.jpg',            fit: 'cover' },
 }
 
 export default function StyleExplorer() {
