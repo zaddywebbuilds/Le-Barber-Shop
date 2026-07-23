@@ -1,97 +1,66 @@
-/**
- * ============================================================
- *  Le Barber Shop — Galerie
- *  Remplacez les placeholders par les vraies photos du salon.
- *
- *  ATTENTION : N'utilisez que des photos autorisées et dont
- *  vous détenez les droits. Ne publiez pas de photos de
- *  clients sans leur consentement explicite.
- * ============================================================
- */
-
-// Palette de couleurs pour les placeholders SVG
-const placeholderColors = [
-  '#2A201A', '#1A1510', '#3A2C22', '#251C16',
-  '#1E1812', '#302418', '#2E2019', '#1C1510',
-]
-
 export const galleryData = [
   {
     id: 1,
-    src: 'images/gallery/coupe-degrade.jpg',
-    placeholder: false,
-    alt: 'Coupe dégradé — Le Barber Shop Évreux',
+    src: 'images/gallery/coupe-design-feuille.jpg',
+    type: 'image',
+    alt: 'Coupe avec dessin en feuille — Le Barber Shop Évreux',
     category: 'coupe',
     aspect: 'portrait',
     published: true,
   },
   {
     id: 2,
-    src: 'images/gallery/shopfront.jpg',
-    placeholder: false,
-    alt: 'Devanture du salon Le Barber Shop, Évreux',
-    category: 'salon',
+    src: 'images/gallery/coupe-design-geometrique.jpg',
+    type: 'image',
+    alt: 'Coupe avec motif géométrique — Le Barber Shop Évreux',
+    category: 'coupe',
     aspect: 'portrait',
     published: true,
   },
   {
     id: 3,
-    src: 'images/gallery/exterior.jpg',
-    placeholder: false,
-    alt: 'Le Barber Shop — 62 Avenue Aristide Briand, Évreux',
-    category: 'salon',
-    aspect: 'landscape',
+    src: 'images/gallery/coupe-arabesque.jpg',
+    type: 'image',
+    alt: 'Coupe avec arabesques — Le Barber Shop Évreux',
+    category: 'coupe',
+    aspect: 'portrait',
     published: true,
   },
   {
     id: 4,
-    // src: 'images/gallery/barbe-01.jpg', // [PHOTO À AJOUTER]
-    placeholder: true,
-    placeholderColor: placeholderColors[2],
-    alt: 'Entretien de barbe — Le Barber Shop',
-    category: 'barbe',
+    src: 'images/gallery/coupe-classique-enfant.jpg',
+    type: 'image',
+    alt: 'Coupe classique enfant — Le Barber Shop Évreux',
+    category: 'coupe',
     aspect: 'portrait',
-    published: false,
+    published: true,
   },
   {
     id: 5,
-    // src: 'images/gallery/coupe-02.jpg', // [PHOTO À AJOUTER]
-    placeholder: true,
-    placeholderColor: placeholderColors[4],
-    alt: 'Coupe structurée — Le Barber Shop',
-    category: 'coupe',
+    src: 'images/gallery/couleur-platine.jpg',
+    type: 'image',
+    alt: 'Coloration platine cheveux et barbe — Le Barber Shop Évreux',
+    category: 'couleur',
     aspect: 'portrait',
-    published: false,
+    published: true,
   },
   {
     id: 6,
-    // src: 'images/gallery/interieur-02.jpg', // [PHOTO À AJOUTER]
-    placeholder: true,
-    placeholderColor: placeholderColors[5],
-    alt: 'Intérieur du salon Le Barber Shop',
-    category: 'salon',
-    aspect: 'square',
-    published: false,
+    src: 'videos/video-01.mp4',
+    type: 'video',
+    alt: 'Coupe et finitions — Le Barber Shop Évreux',
+    category: 'coupe',
+    aspect: 'portrait',
+    published: true,
   },
   {
     id: 7,
-    // src: 'images/gallery/coupe-03.jpg', // [PHOTO À AJOUTER]
-    placeholder: true,
-    placeholderColor: placeholderColors[6],
-    alt: 'Coupe classique — Le Barber Shop',
+    src: 'videos/video-02.mp4',
+    type: 'video',
+    alt: 'Technique de coupe — Le Barber Shop Évreux',
     category: 'coupe',
     aspect: 'portrait',
-    published: false,
-  },
-  {
-    id: 8,
-    // src: 'images/gallery/finitions-01.jpg', // [PHOTO À AJOUTER]
-    placeholder: true,
-    placeholderColor: placeholderColors[7],
-    alt: 'Finitions et contours précis',
-    category: 'finition',
-    aspect: 'landscape',
-    published: false,
+    published: true,
   },
 ]
 

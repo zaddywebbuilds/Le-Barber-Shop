@@ -23,7 +23,29 @@ function GalleryCard({ item, onClick }) {
       }}
       aria-label={`Voir : ${item.alt}`}
     >
-      {item.src ? (
+      {item.type === 'video' ? (
+        <>
+          <video
+            src={asset(item.src)}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          {/* Play icon — fades on hover */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-70 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+            <div style={{ width: 42, height: 42, borderRadius: '50%', background: 'rgba(184,132,61,0.22)', border: '1px solid rgba(184,132,61,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ color: '#EFD9B1', fontSize: '0.75rem', marginLeft: 3 }}>▶</span>
+            </div>
+          </div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 pointer-events-none" />
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none rounded-[inherit]"
+            style={{ boxShadow: 'inset 0 0 0 1px rgba(184,132,61,0.4)' }}
+          />
+        </>
+      ) : item.src ? (
         <>
           <img
             src={asset(item.src)}
@@ -97,7 +119,7 @@ function Lightbox({ item, items, onClose, onPrev, onNext }) {
       </button>
 
       {/* Content */}
-      <div className="max-w-3xl w-full px-16 sm:px-24">
+      <div className={`${item.type === 'video' ? 'max-w-xs' : 'max-w-3xl'} w-full px-16 sm:px-24`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={item.id}
@@ -108,11 +130,20 @@ function Lightbox({ item, items, onClose, onPrev, onNext }) {
             className="rounded-2xl overflow-hidden"
             style={{
               background: item.placeholderColor || '#151412',
-              aspectRatio: item.aspect === 'portrait' ? '3/4' : item.aspect === 'landscape' ? '16/9' : '1',
+              aspectRatio: item.type === 'video' ? '9/16' : item.aspect === 'portrait' ? '3/4' : item.aspect === 'landscape' ? '16/9' : '1',
               border: '1px solid rgba(184,132,61,0.15)',
             }}
           >
-            {item.src ? (
+            {item.type === 'video' ? (
+              <video
+                src={asset(item.src)}
+                controls
+                autoPlay
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            ) : item.src ? (
               <img
                 src={asset(item.src)}
                 alt={item.alt}
