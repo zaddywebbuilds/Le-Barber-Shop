@@ -46,13 +46,13 @@ const styles = [
   },
 ]
 
-// Each style mapped to the media file whose name matches it
+// Each style uses the exact source file the client provided, converted to animated SVG where video
 const MEDIA = {
-  classique: { path: 'images/gallery/coupe-classique-enfant.jpg',     fit: 'cover' },
-  degrade:   { path: 'videos/video-02.svg',                           fit: 'cover' },
-  structure: { path: 'images/gallery/coupe-design-geometrique.jpg',   fit: 'cover' },
-  naturel:   { path: 'images/gallery/coupe-design-feuille.jpg',       fit: 'cover' },
-  barbe:     { path: 'images/gallery/couleur-platine.jpg',            fit: 'cover' },
+  classique: { path: 'videos/style-classic.svg',   fit: 'cover' },
+  degrade:   { path: 'videos/style-gradient.svg',  fit: 'cover' },
+  structure: { path: 'videos/style-structure.svg', fit: 'cover' },
+  naturel:   { path: 'images/style-natural.jpg',   fit: 'cover' },
+  barbe:     { path: 'videos/style-beard.svg',     fit: 'cover' },
 }
 
 export default function StyleExplorer() {
