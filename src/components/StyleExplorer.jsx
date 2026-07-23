@@ -1,109 +1,76 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
+import { asset } from '../utils/assets'
 
 const styles = [
   {
     id: 'classique',
     label: 'Classique',
     description:
-      'Un style intemporel : raie nette, côtés courts, dessus travaillé au peigne. La référence du barbier traditionnel, toujours d\'actualité.',
+      "Un style intemporel : raie nette, côtés courts, dessus travaillé au peigne. La référence du barbier traditionnel, toujours d'actualité.",
     color: '#B8843D',
-    bgAccent: 'rgba(184,132,61,0.06)',
-    icon: '◈',
+    bgAccent: 'rgba(184,132,61,0.08)',
   },
   {
     id: 'degrade',
     label: 'Dégradé',
     description:
-      'Transition fluide entre les longueurs, du plus court à la nuque jusqu\'au sommet du crâne. Net, moderne et très demandé.',
+      "Transition fluide entre les longueurs, du plus court à la nuque jusqu'au sommet du crâne. Net, moderne et très demandé.",
     color: '#EFD9B1',
     bgAccent: 'rgba(239,217,177,0.05)',
-    icon: '◈',
   },
   {
     id: 'structure',
     label: 'Structuré',
     description:
-      'Lignes définies, contours tracés au rasoir, silhouette affirmée. Idéal pour les hommes qui souhaitent un rendu marqué et professionnel.',
+      "Lignes définies, contours tracés au rasoir, silhouette affirmée. Idéal pour les hommes qui souhaitent un rendu marqué et professionnel.",
     color: '#B8843D',
-    bgAccent: 'rgba(184,132,61,0.06)',
-    icon: '◈',
+    bgAccent: 'rgba(184,132,61,0.08)',
+  },
+  {
+    id: 'arabesque',
+    label: 'Arabesque',
+    description:
+      "Volutes et motifs arabesques rasés dans le dégradé. Une expression artistique unique taillée directement dans le crâne.",
+    color: '#EFD9B1',
+    bgAccent: 'rgba(239,217,177,0.05)',
+  },
+  {
+    id: 'graphique',
+    label: 'Graphique',
+    description:
+      "Dessins géométriques et motifs précis — carrés, losanges, logos — gravés dans la coupe. La créativité au service du style.",
+    color: '#B8843D',
+    bgAccent: 'rgba(184,132,61,0.08)',
   },
   {
     id: 'naturel',
     label: 'Naturel',
     description:
-      'Volume respecté, texture conservée, longueurs maîtrisées. Un look authentique, sans artifice, qui met en valeur le cheveu naturel.',
+      "Volume respecté, texture conservée, longueurs maîtrisées. Un look authentique, sans artifice, qui met en valeur le cheveu naturel.",
     color: '#EFD9B1',
     bgAccent: 'rgba(239,217,177,0.05)',
-    icon: '◈',
   },
   {
     id: 'barbe',
-    label: 'Barbe soignée',
+    label: 'Barbe & Couleur',
     description:
-      'Contours précis, lignes dessinées, longueur harmonisée avec la coupe. La barbe comme élément central du style masculin.',
+      "Contours précis, couleur maîtrisée, longueur harmonisée avec la coupe. La barbe et la coloration comme éléments centraux d'un style affirmé.",
     color: '#B8843D',
-    bgAccent: 'rgba(184,132,61,0.06)',
-    icon: '◈',
+    bgAccent: 'rgba(184,132,61,0.08)',
   },
 ]
 
-// SVG silhouettes for each style
-const silhouettes = {
-  classique: (
-    <svg viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <ellipse cx="80" cy="90" rx="52" ry="58" fill="#2A201A" />
-      <path d="M30 70 Q30 30 80 28 Q130 30 130 70 L132 90 Q130 50 80 48 Q30 50 28 90Z" fill="#B8843D" opacity="0.7" />
-      <ellipse cx="80" cy="155" rx="35" ry="18" fill="#1A1510" opacity="0.6" />
-      <path d="M50 140 Q80 165 110 140" stroke="#2A201A" strokeWidth="2" fill="none" />
-      <circle cx="65" cy="100" r="5" fill="#090909" opacity="0.5" />
-      <circle cx="95" cy="100" r="5" fill="#090909" opacity="0.5" />
-      <path d="M65 120 Q80 130 95 120" stroke="#090909" strokeWidth="2" fill="none" opacity="0.4" />
-    </svg>
-  ),
-  degrade: (
-    <svg viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <ellipse cx="80" cy="90" rx="52" ry="58" fill="#2A201A" />
-      <path d="M28 90 Q28 50 80 45 Q132 50 132 90" fill="none" stroke="#B8843D" strokeWidth="1.5" />
-      <path d="M32 100 Q32 60 80 55 Q128 60 128 100" fill="url(#fadeGrad)" opacity="0.5" />
-      <defs>
-        <linearGradient id="fadeGrad" x1="80" y1="55" x2="80" y2="100" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#B8843D" stopOpacity="0.8" />
-          <stop offset="1" stopColor="#B8843D" stopOpacity="0.05" />
-        </linearGradient>
-      </defs>
-      <ellipse cx="80" cy="155" rx="35" ry="18" fill="#1A1510" opacity="0.6" />
-    </svg>
-  ),
-  structure: (
-    <svg viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <ellipse cx="80" cy="90" rx="52" ry="58" fill="#2A201A" />
-      <path d="M28 78 L32 68 Q80 40 128 68 L132 78" fill="#B8843D" opacity="0.8" />
-      <line x1="28" y1="88" x2="132" y2="88" stroke="#B8843D" strokeWidth="1" opacity="0.4" />
-      <ellipse cx="80" cy="155" rx="35" ry="18" fill="#1A1510" opacity="0.6" />
-    </svg>
-  ),
-  naturel: (
-    <svg viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <ellipse cx="80" cy="90" rx="52" ry="58" fill="#2A201A" />
-      <path d="M34 70 Q50 35 80 30 Q110 35 126 70 Q135 55 80 42 Q25 55 34 70Z" fill="#EFD9B1" opacity="0.5" />
-      <path d="M30 80 Q26 60 40 45" stroke="#EFD9B1" strokeWidth="1.5" fill="none" opacity="0.3" />
-      <path d="M130 80 Q134 60 120 45" stroke="#EFD9B1" strokeWidth="1.5" fill="none" opacity="0.3" />
-      <ellipse cx="80" cy="155" rx="35" ry="18" fill="#1A1510" opacity="0.6" />
-    </svg>
-  ),
-  barbe: (
-    <svg viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <ellipse cx="80" cy="90" rx="52" ry="58" fill="#2A201A" />
-      <path d="M40 115 Q50 145 80 152 Q110 145 120 115 Q100 130 80 132 Q60 130 40 115Z" fill="#B8843D" opacity="0.6" />
-      <path d="M42 108 L40 115" stroke="#B8843D" strokeWidth="1.5" opacity="0.5" />
-      <path d="M118 108 L120 115" stroke="#B8843D" strokeWidth="1.5" opacity="0.5" />
-      <path d="M28 70 Q30 40 80 35 Q130 40 132 70" stroke="#EFD9B1" strokeWidth="1" fill="none" opacity="0.3" />
-      <ellipse cx="80" cy="165" rx="35" ry="15" fill="#1A1510" opacity="0.4" />
-    </svg>
-  ),
+// Media mapped by style id — SVGs animate automatically, photos are cropped to fit
+const MEDIA = {
+  classique: { path: 'images/gallery/coupe-classique-enfant.jpg', fit: 'cover' },
+  degrade:   { path: 'videos/video-02.svg',                       fit: 'cover' },
+  structure: { path: 'videos/video-01.svg',                       fit: 'cover' },
+  arabesque: { path: 'images/gallery/coupe-arabesque.jpg',        fit: 'cover' },
+  graphique: { path: 'images/gallery/coupe-design-geometrique.jpg', fit: 'cover' },
+  naturel:   { path: 'images/gallery/coupe-design-feuille.jpg',   fit: 'cover' },
+  barbe:     { path: 'images/gallery/couleur-platine.jpg',        fit: 'cover' },
 }
 
 export default function StyleExplorer() {
@@ -111,6 +78,7 @@ export default function StyleExplorer() {
   const [sectionRef, inView] = useInView({ threshold: 0.1 })
 
   const currentStyle = styles.find((s) => s.id === active.id) || styles[0]
+  const currentMedia = MEDIA[active.id]
 
   return (
     <section
@@ -169,7 +137,7 @@ export default function StyleExplorer() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left — Silhouette Display */}
+          {/* Left — Media display */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -177,46 +145,53 @@ export default function StyleExplorer() {
             className="relative flex items-center justify-center"
           >
             <div
-              className="relative rounded-3xl flex items-center justify-center"
+              className="relative rounded-3xl overflow-hidden"
               style={{
                 width: '100%',
                 maxWidth: 400,
                 aspectRatio: '4/5',
-                background: `radial-gradient(ellipse at 50% 40%, ${currentStyle.bgAccent}, transparent 70%), #151412`,
+                background: '#151412',
                 border: '1px solid rgba(184,132,61,0.12)',
-                boxShadow: `0 40px 80px rgba(0,0,0,0.5), 0 0 80px ${currentStyle.bgAccent}`,
-                transition: 'box-shadow 0.5s ease, background 0.5s ease',
+                boxShadow: `0 40px 80px rgba(0,0,0,0.55), 0 0 80px ${currentStyle.bgAccent}`,
+                transition: 'box-shadow 0.5s ease',
                 margin: '0 auto',
               }}
             >
-              {/* Decorative rings */}
-              <div
-                className="absolute rounded-full pointer-events-none"
-                style={{
-                  inset: '10%',
-                  border: `1px solid ${currentStyle.color}20`,
-                  borderRadius: '50%',
-                }}
-              />
-
-              {/* Style silhouette */}
+              {/* Media layer — fades between styles */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.05 }}
-                  transition={{ duration: 0.35 }}
-                  className="w-1/2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.38 }}
+                  className="absolute inset-0"
                 >
-                  {silhouettes[active.id]}
+                  <img
+                    src={asset(currentMedia.path)}
+                    alt={active.label}
+                    className="w-full h-full"
+                    style={{ objectFit: currentMedia.fit, objectPosition: 'center top' }}
+                  />
                 </motion.div>
               </AnimatePresence>
 
-              {/* Style label overlay */}
+              {/* Bottom gradient for label legibility */}
               <div
-                className="absolute bottom-6 left-6 right-6 text-center"
-              >
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(to top, rgba(9,9,9,0.82) 0%, rgba(9,9,9,0.15) 40%, transparent 65%)',
+                }}
+              />
+
+              {/* Inset brass ring glint */}
+              <div
+                className="absolute inset-0 rounded-3xl pointer-events-none"
+                style={{ boxShadow: 'inset 0 1px 0 rgba(184,132,61,0.32), inset 0 -1px 0 rgba(0,0,0,0.5)' }}
+              />
+
+              {/* Style label */}
+              <div className="absolute bottom-6 left-6 right-6 text-center">
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={`${active.id}-label`}
@@ -225,7 +200,7 @@ export default function StyleExplorer() {
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.3 }}
                     className="font-display font-light"
-                    style={{ fontSize: '1.4rem', color: currentStyle.color }}
+                    style={{ fontSize: '1.35rem', color: currentStyle.color }}
                   >
                     {active.label}
                   </motion.p>
@@ -234,18 +209,18 @@ export default function StyleExplorer() {
             </div>
           </motion.div>
 
-          {/* Right — Style Selector */}
+          {/* Right — Style selector */}
           <div className="flex flex-col gap-6">
             {/* Buttons */}
-            <div className="flex flex-wrap gap-3 mb-2">
+            <div className="flex flex-wrap gap-2.5 mb-2">
               {styles.map((s, i) => (
                 <motion.button
                   key={s.id}
                   initial={{ opacity: 0, x: 20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.1 + i * 0.08 }}
+                  transition={{ delay: 0.1 + i * 0.07 }}
                   onClick={() => setActive(s)}
-                  className="px-5 py-2.5 rounded-sm font-sans text-sm tracking-[0.1em] uppercase transition-all duration-300"
+                  className="px-4 py-2 rounded-sm font-sans text-xs tracking-[0.1em] uppercase transition-all duration-300"
                   style={{
                     background: active.id === s.id ? 'rgba(184,132,61,0.15)' : 'rgba(21,20,18,0.8)',
                     border: `1px solid ${active.id === s.id ? 'rgba(184,132,61,0.5)' : 'rgba(184,132,61,0.12)'}`,
@@ -275,7 +250,6 @@ export default function StyleExplorer() {
                   {currentStyle.description}
                 </p>
 
-                {/* Action */}
                 <div className="flex flex-wrap items-center gap-4">
                   <button
                     onClick={() => {
@@ -295,7 +269,6 @@ export default function StyleExplorer() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Note */}
             <p className="font-sans mt-2" style={{ fontSize: '0.75rem', color: 'rgba(245,240,232,0.2)' }}>
               Ces inspirations sont indicatives. Votre barbier adaptera le style à votre morphologie et à vos cheveux.
             </p>
