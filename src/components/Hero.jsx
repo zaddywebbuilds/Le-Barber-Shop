@@ -231,12 +231,14 @@ export default function Hero() {
                     ].join(', '),
                   }}
                 >
-                  <img
-                    src={asset('heropage.svg')}
-                    alt=""
+                  <video
+                    src={asset('heropage.mp4')}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                     aria-hidden="true"
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ transform: 'scale(1.06)' }}
+                    className="absolute inset-0 w-full h-full object-contain"
                   />
 
                   {/* Radial vignette — darkens edges for depth */}
