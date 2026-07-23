@@ -1,0 +1,330 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Custom CSS Variables ─────────────────────────────────── */
+:root {
+  --obsidian: #090909;
+  --charcoal: #151412;
+  --espresso: #2A201A;
+  --ivory: #F5F0E8;
+  --brass: #B8843D;
+  --champagne: #EFD9B1;
+  --burgundy: #661F2B;
+  --navy: #182330;
+  --brass-glow: rgba(184, 132, 61, 0.4);
+  --brass-subtle: rgba(184, 132, 61, 0.1);
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  background-color: var(--obsidian);
+  color: var(--ivory);
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: rgba(184, 132, 61, 0.3);
+  color: var(--champagne);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--obsidian);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brass);
+  border-radius: 2px;
+}
+
+/* ─── Typography ─────────────────────────────────────────────── */
+.font-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+h1, h2, h3, .serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* ─── Brass Text Gradient ────────────────────────────────────── */
+.text-brass-gradient {
+  background: linear-gradient(135deg, #B8843D 0%, #EFD9B1 45%, #B8843D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glass Card ─────────────────────────────────────────────── */
+.glass-card {
+  background: rgba(21, 20, 18, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(184, 132, 61, 0.15);
+}
+
+.glass-card-light {
+  background: rgba(42, 32, 26, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(184, 132, 61, 0.12);
+}
+
+/* ─── Brass Border Animated ──────────────────────────────────── */
+.brass-border-animated {
+  position: relative;
+}
+.brass-border-animated::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, #B8843D, transparent, #B8843D);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.brass-border-animated:hover::after {
+  opacity: 1;
+}
+
+/* ─── Magnetic Button Base ───────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, #B8843D 0%, #EFD9B1 50%, #B8843D 100%);
+  background-size: 200% auto;
+  color: #090909;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-primary:hover {
+  background-position: right center;
+  box-shadow: 0 8px 40px rgba(184, 132, 61, 0.4);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: var(--champagne);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(184, 132, 61, 0.4);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-secondary:hover {
+  border-color: var(--brass);
+  background: rgba(184, 132, 61, 0.08);
+  color: var(--brass);
+}
+
+/* ─── Section Headings ───────────────────────────────────────── */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.section-eyebrow::before,
+.section-eyebrow::after {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: var(--brass);
+  opacity: 0.6;
+}
+
+/* ─── Brass Divider ──────────────────────────────────────────── */
+.brass-divider {
+  width: 3rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brass), transparent);
+}
+
+/* ─── Atmospheric Haze ───────────────────────────────────────── */
+.haze {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* ─── Noise Texture Overlay ──────────────────────────────────── */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+}
+
+/* ─── Scroll Reveal ──────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Card Tilt ──────────────────────────────────────────────── */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.1s linear;
+}
+
+/* ─── Loading Screen ─────────────────────────────────────────── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--obsidian);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* ─── Custom Cursor ──────────────────────────────────────────── */
+.custom-cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--brass);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease, opacity 0.3s ease;
+}
+.custom-cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(184, 132, 61, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.25s ease;
+}
+
+/* ─── Scroll Progress Bar ────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brass), var(--champagne));
+  z-index: 1000;
+  transform-origin: left;
+}
+
+/* ─── Barber Pole Spin ───────────────────────────────────────── */
+@keyframes barberPole {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 60px; }
+}
+.barber-pole {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--brass) 0px,
+    var(--brass) 10px,
+    var(--ivory) 10px,
+    var(--ivory) 20px,
+    #661F2B 20px,
+    #661F2B 30px,
+    var(--ivory) 30px,
+    var(--ivory) 40px,
+    var(--brass) 40px,
+    var(--brass) 60px
+  );
+  animation: barberPole 2s linear infinite;
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ─── Focus Visible ──────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+/* ─── Image Mask Transitions ─────────────────────────────────── */
+.img-reveal {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-reveal.visible {
+  clip-path: inset(0% 0 0 0);
+}
+
+/* ─── Canvas WebGL Container ─────────────────────────────────── */
+.webgl-container canvas {
+  display: block;
+  outline: none;
+}
