@@ -65,7 +65,7 @@ export default function Hero() {
       }} />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
-        <div className="grid lg:grid-cols-[5fr_7fr] gap-12 lg:gap-4 items-center min-h-screen py-24">
+        <div className="grid lg:grid-cols-[4fr_8fr] gap-8 lg:gap-2 items-center min-h-screen py-24">
 
           {/* ── Left: copy ── */}
           <div className="flex flex-col justify-center order-2 lg:order-1">
@@ -149,7 +149,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.4, delay: 0.3 }}
             className="relative order-1 lg:order-2"
-            style={{ height: 'clamp(480px, 76vh, 740px)' }}
+            style={{ height: 'clamp(520px, 90vh, 900px)' }}
             aria-hidden="true"
           >
             {/* Pulsing deep aura behind the globe */}
@@ -166,7 +166,7 @@ export default function Hero() {
 
             {/* Video globe — sits behind the WebGL canvas */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="relative" style={{ width: 'clamp(260px, 60%, 500px)', aspectRatio: '1 / 1' }}>
+              <div className="relative" style={{ width: 'clamp(380px, 92%, 820px)', aspectRatio: '1 / 1' }}>
 
                 {/* Outermost slow pulse ring */}
                 <motion.div
@@ -273,7 +273,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 2, duration: 0.9 }}
                   className="absolute left-0 right-0 flex items-center justify-center gap-3"
-                  style={{ bottom: '-44px' }}
+                  style={{ bottom: '-36px' }}
                 >
                   <div style={{ height: 1, width: 24, background: 'linear-gradient(to right, transparent, rgba(184,132,61,0.4))' }} />
                   <span className="font-sans text-xs tracking-[0.24em] uppercase" style={{ color: 'rgba(184,132,61,0.45)' }}>

@@ -27,7 +27,7 @@ export default function ExperienceSection() {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative py-32 overflow-hidden"
+      className="relative py-16 overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #090909 0%, #2A201A 50%, #151412 100%)' }}
       aria-labelledby="exp-heading"
     >

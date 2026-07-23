@@ -116,7 +116,7 @@ export default function StyleExplorer() {
     <section
       id="style-explorer"
       ref={sectionRef}
-      className="relative py-32 overflow-hidden"
+      className="relative py-16 overflow-hidden"
       style={{ background: '#090909' }}
       aria-labelledby="explorer-heading"
     >

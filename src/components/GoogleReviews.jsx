@@ -184,7 +184,7 @@ export default function GoogleReviews() {
     <section
       id="avis"
       ref={sectionRef}
-      className="relative py-28 overflow-hidden"
+      className="relative py-14 overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #151412 0%, #0D0B09 100%)' }}
       aria-labelledby="reviews-heading"
     >

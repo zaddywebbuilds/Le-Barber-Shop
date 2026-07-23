@@ -20,7 +20,7 @@ export default function LocationSection() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative py-32 overflow-hidden"
+      className="relative py-16 overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #090909 0%, #2A201A 100%)' }}
       aria-labelledby="location-heading"
     >

@@ -22,7 +22,7 @@ const Footer = lazy(() => import('./components/Footer'))
 
 const SectionFallback = () => (
   <div
-    className="flex items-center justify-center py-32"
+    className="flex items-center justify-center py-12"
     aria-hidden="true"
   >
     <div

@@ -174,7 +174,7 @@ export default function ServicesSection() {
     <section
       id="services"
       ref={sectionRef}
-      className="relative py-32 overflow-hidden"
+      className="relative py-16 overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #151412 0%, #090909 100%)' }}
       aria-labelledby="services-heading"
     >

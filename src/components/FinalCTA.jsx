@@ -42,7 +42,7 @@ export default function FinalCTA() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-40 overflow-hidden"
+      className="relative py-20 overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #2A201A 0%, #090909 100%)' }}
       aria-labelledby="cta-heading"
       onMouseMove={handleMouseMove}
