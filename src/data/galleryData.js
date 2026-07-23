@@ -46,8 +46,8 @@ export const galleryData = [
   },
   {
     id: 6,
-    src: 'videos/video-01.mp4',
-    type: 'video',
+    src: 'videos/video-01.svg',
+    type: 'image',
     alt: 'Coupe et finitions — Le Barber Shop Évreux',
     category: 'coupe',
     aspect: 'portrait',
@@ -55,9 +55,9 @@ export const galleryData = [
   },
   {
     id: 7,
-    src: 'videos/video-02.mp4',
-    type: 'video',
-    alt: 'Technique de coupe — Le Barber Shop Évreux',
+    src: 'videos/video-02.svg',
+    type: 'image',
+    alt: 'Dégradé technique de coupe — Le Barber Shop Évreux',
     category: 'coupe',
     aspect: 'portrait',
     published: true,
