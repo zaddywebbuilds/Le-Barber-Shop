@@ -8,10 +8,12 @@
     <title>Le Barber Shop | Coiffeur Barbier à Évreux</title>
     <meta name="description" content="Découvrez Le Barber Shop à Évreux, un espace dédié à la coiffure masculine, au style et au soin du détail. Retrouvez le salon et préparez votre prochaine visite." />
 
-    <!-- Preload critical fonts -->
+    <!-- Non-blocking font load — 3 weights only, no render block -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" /></noscript>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

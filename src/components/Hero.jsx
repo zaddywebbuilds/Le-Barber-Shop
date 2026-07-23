@@ -1,10 +1,29 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, Suspense, lazy } from 'react'
 import { motion } from 'framer-motion'
 import { MapPin, ChevronDown } from 'lucide-react'
 import { businessConfig } from '../data/businessConfig'
-import BarberChairScene from './BarberChairScene'
 import { useWebGL } from '../hooks/useWebGL'
 import { asset } from '../utils/assets'
+
+// Lazy-loaded only when WebGL is confirmed available — keeps Three.js (~700 KB) out of the initial parse
+const LazyBarberScene = lazy(() => import('./BarberChairScene'))
+
+function GlobeFallback() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="opacity-50">
+        <svg viewBox="0 0 140 140" width="140" height="140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="70" cy="70" r="64" stroke="#B8843D" strokeWidth="0.6" strokeDasharray="4 7" />
+          <circle cx="70" cy="70" r="48" stroke="#B8843D" strokeWidth="0.4" opacity="0.5" />
+          <circle cx="70" cy="70" r="32" stroke="#B8843D" strokeWidth="0.3" opacity="0.3" />
+          <text x="70" y="78" textAnchor="middle" fontFamily="Cormorant Garamond, serif" fontSize="22" fill="#B8843D" fontWeight="300">
+            LE BARBER
+          </text>
+        </svg>
+      </div>
+    </div>
+  )
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -286,8 +305,14 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* WebGL brass rings — rendered on top of video, transparent canvas bg */}
-            <BarberChairScene scrollY={scrollY} use3D={use3D} />
+            {/* WebGL brass rings — only fetched when WebGL confirmed available */}
+            {use3D === true ? (
+              <Suspense fallback={<GlobeFallback />}>
+                <LazyBarberScene scrollY={scrollY} use3D={use3D} />
+              </Suspense>
+            ) : (
+              <GlobeFallback />
+            )}
           </motion.div>
 
         </div>

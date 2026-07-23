@@ -131,9 +131,9 @@ export default function Navbar() {
               </a>
             )}
 
-            {/* Hamburger */}
+            {/* Hamburger — min 44×44 px touch target */}
             <button
-              className="lg:hidden flex flex-col gap-1.5 p-2"
+              className="lg:hidden flex flex-col items-center justify-center gap-1.5 p-3 min-h-[44px] min-w-[44px]"
               onClick={() => setMenuOpen(true)}
               aria-label="Ouvrir le menu"
               aria-expanded={menuOpen}

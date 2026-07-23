@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    chunkSizeWarningLimit: 1000,
+    target: ['es2020', 'safari14'],
     rollupOptions: {
       output: {
         manualChunks: {

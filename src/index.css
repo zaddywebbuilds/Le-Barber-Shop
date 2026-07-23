@@ -328,3 +328,33 @@ h1, h2, h3, .serif {
   display: block;
   outline: none;
 }
+
+/* ─── Touch / Mobile Optimisations ──────────────────────────── */
+@media (pointer: coarse) {
+  /* Hide desktop-only custom cursor */
+  .custom-cursor,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+
+  /* Enforce 44 px minimum touch targets on all buttons */
+  .btn-primary,
+  .btn-secondary {
+    min-height: 44px;
+  }
+
+  /* Reduce GPU-heavy backdrop blur on touch devices */
+  .glass-card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .glass-card-light {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  /* Halve the haze blur — still atmospheric, much cheaper */
+  .haze {
+    filter: blur(40px);
+  }
+}
