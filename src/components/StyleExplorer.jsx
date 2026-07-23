@@ -46,13 +46,12 @@ const styles = [
   },
 ]
 
-// Each style uses the exact source file the client provided, converted to animated SVG where video
 const MEDIA = {
-  classique: { path: 'videos/style-classic.svg',   fit: 'cover' },
-  degrade:   { path: 'videos/style-gradient.svg',  fit: 'cover' },
-  structure: { path: 'videos/style-structure.svg', fit: 'cover' },
-  naturel:   { path: 'images/style-natural.jpg',   fit: 'cover' },
-  barbe:     { path: 'videos/style-beard.svg',     fit: 'cover' },
+  classique: { path: 'videos/style-classic.mp4',   type: 'video' },
+  degrade:   { path: 'videos/style-gradient.mp4',  type: 'video' },
+  structure: { path: 'videos/style-structure.mp4', type: 'video' },
+  naturel:   { path: 'images/style-natural.jpg',   type: 'image' },
+  barbe:     { path: 'videos/style-beard.mp4',     type: 'video' },
 }
 
 export default function StyleExplorer() {
@@ -149,12 +148,23 @@ export default function StyleExplorer() {
                   transition={{ duration: 0.38 }}
                   className="absolute inset-0"
                 >
-                  <img
-                    src={asset(currentMedia.path)}
-                    alt={active.label}
-                    className="w-full h-full"
-                    style={{ objectFit: currentMedia.fit, objectPosition: 'center top' }}
-                  />
+                  {currentMedia.type === 'video' ? (
+                    <video
+                      key={currentMedia.path}
+                      src={asset(currentMedia.path)}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={asset(currentMedia.path)}
+                      alt={active.label}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </motion.div>
               </AnimatePresence>
 
