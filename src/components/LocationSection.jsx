@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 import { MapPin, Clock, Phone, ExternalLink, Copy, Check } from 'lucide-react'
 import { businessConfig } from '../data/businessConfig'
+import { asset } from '../utils/assets'
 
 export default function LocationSection() {
   const [sectionRef, inView] = useInView({ threshold: 0.1 })
@@ -60,26 +61,20 @@ export default function LocationSection() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left — Info */}
+
+          {/* Left — Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            {/* Address */}
-            <div
-              className="glass-card rounded-2xl p-6"
-              style={{ border: '1px solid rgba(184,132,61,0.12)' }}
-            >
+            {/* Address card */}
+            <div className="glass-card rounded-2xl p-6" style={{ border: '1px solid rgba(184,132,61,0.12)' }}>
               <div className="flex items-start gap-4 mb-4">
                 <div
                   className="rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    width: 40, height: 40,
-                    background: 'rgba(184,132,61,0.1)',
-                    border: '1px solid rgba(184,132,61,0.2)',
-                  }}
+                  style={{ width: 40, height: 40, background: 'rgba(184,132,61,0.1)', border: '1px solid rgba(184,132,61,0.2)' }}
                 >
                   <MapPin size={16} style={{ color: 'var(--brass)' }} aria-hidden="true" />
                 </div>
@@ -105,18 +100,11 @@ export default function LocationSection() {
 
             {/* Phone — only if verified */}
             {businessConfig.phone && (
-              <div
-                className="glass-card rounded-2xl p-6"
-                style={{ border: '1px solid rgba(184,132,61,0.12)' }}
-              >
+              <div className="glass-card rounded-2xl p-6" style={{ border: '1px solid rgba(184,132,61,0.12)' }}>
                 <div className="flex items-center gap-4">
                   <div
                     className="rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{
-                      width: 40, height: 40,
-                      background: 'rgba(184,132,61,0.1)',
-                      border: '1px solid rgba(184,132,61,0.2)',
-                    }}
+                    style={{ width: 40, height: 40, background: 'rgba(184,132,61,0.1)', border: '1px solid rgba(184,132,61,0.2)' }}
                   >
                     <Phone size={16} style={{ color: 'var(--brass)' }} aria-hidden="true" />
                   </div>
@@ -133,33 +121,21 @@ export default function LocationSection() {
 
             {/* Opening hours — only if verified */}
             {businessConfig.openingHours && (
-              <div
-                className="glass-card rounded-2xl p-6"
-                style={{ border: '1px solid rgba(184,132,61,0.12)' }}
-              >
+              <div className="glass-card rounded-2xl p-6" style={{ border: '1px solid rgba(184,132,61,0.12)' }}>
                 <div className="flex items-start gap-4">
                   <div
                     className="rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{
-                      width: 40, height: 40,
-                      background: 'rgba(184,132,61,0.1)',
-                      border: '1px solid rgba(184,132,61,0.2)',
-                    }}
+                    style={{ width: 40, height: 40, background: 'rgba(184,132,61,0.1)', border: '1px solid rgba(184,132,61,0.2)' }}
                   >
                     <Clock size={16} style={{ color: 'var(--brass)' }} aria-hidden="true" />
                   </div>
                   <div className="space-y-2 flex-1">
                     {businessConfig.openingHours.map((h) => (
                       <div key={h.day} className="flex justify-between items-center">
-                        <span className="font-sans text-ivory/50" style={{ fontSize: '0.8rem' }}>
-                          {h.day}
-                        </span>
+                        <span className="font-sans text-ivory/50" style={{ fontSize: '0.8rem' }}>{h.day}</span>
                         <span
                           className="font-sans"
-                          style={{
-                            fontSize: '0.8rem',
-                            color: h.hours === 'Fermé' ? 'rgba(245,240,232,0.25)' : 'var(--champagne)',
-                          }}
+                          style={{ fontSize: '0.8rem', color: h.hours === 'Fermé' ? 'rgba(245,240,232,0.25)' : 'var(--champagne)' }}
                         >
                           {h.hours}
                         </span>
@@ -170,7 +146,7 @@ export default function LocationSection() {
               </div>
             )}
 
-            {/* CTA */}
+            {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <a
                 href={businessConfig.googleMapsUrl}
@@ -195,38 +171,56 @@ export default function LocationSection() {
             </div>
           </motion.div>
 
-          {/* Right — Map */}
+          {/* Right — Exterior photo + Map */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative rounded-2xl overflow-hidden"
-            style={{ aspectRatio: '4/3', minHeight: 300 }}
+            className="flex flex-col gap-4"
           >
-            {/* Dark map overlay for style */}
+            {/* Exterior street photo */}
             <div
-              className="absolute inset-0 pointer-events-none z-10"
-              style={{
-                background: 'linear-gradient(135deg, rgba(9,9,9,0.2) 0%, transparent 50%)',
-              }}
-            />
-            {/* Border */}
-            <div
-              className="absolute inset-0 rounded-2xl pointer-events-none z-10"
-              style={{ border: '1px solid rgba(184,132,61,0.15)' }}
-            />
+              className="relative rounded-2xl overflow-hidden"
+              style={{ aspectRatio: '16/7', border: '1px solid rgba(184,132,61,0.12)' }}
+            >
+              <img
+                src={asset('images/gallery/exterior.jpg')}
+                alt="Vue extérieure — Le Barber Shop, 62 Avenue Aristide Briand, Évreux"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: 'linear-gradient(to top, rgba(9,9,9,0.35) 0%, transparent 60%)' }}
+              />
+            </div>
 
-            <iframe
-              title="Localisation de Le Barber Shop sur Google Maps"
-              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2609.6!2d${businessConfig.coordinates.lng}!3d${businessConfig.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e14172f7221f1b%3A0xbec60b606d9bf61d!2sLe%20Barber%20Shop!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr`}
-              width="100%"
-              height="100%"
-              style={{ border: 0, filter: 'saturate(0.3) contrast(1.1) brightness(0.8)' }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            {/* Google Maps embed */}
+            <div
+              className="relative rounded-2xl overflow-hidden"
+              style={{ aspectRatio: '4/3', minHeight: 260 }}
+            >
+              <div
+                className="absolute inset-0 pointer-events-none z-10"
+                style={{ background: 'linear-gradient(135deg, rgba(9,9,9,0.15) 0%, transparent 50%)' }}
+              />
+              <div
+                className="absolute inset-0 rounded-2xl pointer-events-none z-10"
+                style={{ border: '1px solid rgba(184,132,61,0.15)' }}
+              />
+              <iframe
+                title="Localisation de Le Barber Shop sur Google Maps"
+                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2609.6!2d${businessConfig.coordinates.lng}!3d${businessConfig.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e14172f7221f1b%3A0xbec60b606d9bf61d!2sLe%20Barber%20Shop!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr`}
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: 'saturate(0.3) contrast(1.1) brightness(0.8)' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </motion.div>
+
         </div>
       </div>
     </section>

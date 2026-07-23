@@ -4,50 +4,61 @@ import { useInView } from '../hooks/useInView'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { getPublishedGallery, galleryData } from '../data/galleryData'
 import { businessConfig } from '../data/businessConfig'
+import { asset } from '../utils/assets'
 
-// Placeholder card
-function PlaceholderCard({ item, onClick, style }) {
+// Gallery card — handles both real images and placeholders
+function GalleryCard({ item, onClick }) {
+  const aspectRatio = item.aspect === 'portrait' ? '3/4' : item.aspect === 'landscape' ? '16/9' : '1'
+  const borderRadius = item.aspect === 'portrait' ? '1.5rem 1.5rem 3rem 1.5rem' : '1.5rem'
+
   return (
     <motion.button
       onClick={() => onClick(item)}
-      className="relative overflow-hidden group focus-visible:ring-2 focus-visible:ring-brass"
+      className="relative overflow-hidden group focus-visible:ring-2 focus-visible:ring-brass w-full"
       style={{
-        borderRadius: item.aspect === 'portrait' ? '1.5rem 1.5rem 3rem 1.5rem' : '1.5rem',
-        background: item.placeholderColor,
-        aspectRatio: item.aspect === 'portrait' ? '3/4' : item.aspect === 'landscape' ? '16/9' : '1',
+        borderRadius,
+        aspectRatio,
+        background: item.placeholder ? item.placeholderColor : '#151412',
         border: '1px solid rgba(184,132,61,0.08)',
-        ...style,
       }}
       aria-label={`Voir : ${item.alt}`}
     >
-      {/* Shimmer on hover */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: 'linear-gradient(135deg, rgba(184,132,61,0.06) 0%, transparent 50%, rgba(184,132,61,0.04) 100%)',
-        }}
-      />
-      {/* Placeholder label */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-        <div
-          className="rounded-full flex items-center justify-center"
-          style={{
-            width: 48, height: 48,
-            border: '1px solid rgba(184,132,61,0.2)',
-            background: 'rgba(184,132,61,0.05)',
-          }}
-        >
-          <span style={{ color: 'rgba(184,132,61,0.4)', fontSize: '1.2rem' }}>◈</span>
-        </div>
-        <p
-          className="font-sans text-center px-4"
-          style={{ fontSize: '0.7rem', color: 'rgba(239,217,177,0.25)', letterSpacing: '0.1em' }}
-        >
-          Photo à ajouter
-        </p>
-      </div>
-      {/* Alt text */}
-      <span className="sr-only">{item.alt}</span>
+      {item.src ? (
+        <>
+          <img
+            src={asset(item.src)}
+            alt={item.alt}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          {/* Dark overlay on hover */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 pointer-events-none" />
+          {/* Brass border flash on hover */}
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none rounded-[inherit]"
+            style={{ boxShadow: 'inset 0 0 0 1px rgba(184,132,61,0.4)' }}
+          />
+        </>
+      ) : (
+        <>
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            style={{ background: 'linear-gradient(135deg, rgba(184,132,61,0.06) 0%, transparent 50%, rgba(184,132,61,0.04) 100%)' }}
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+            <div
+              className="rounded-full flex items-center justify-center"
+              style={{ width: 48, height: 48, border: '1px solid rgba(184,132,61,0.2)', background: 'rgba(184,132,61,0.05)' }}
+            >
+              <span style={{ color: 'rgba(184,132,61,0.4)', fontSize: '1.2rem' }}>◈</span>
+            </div>
+            <p className="font-sans text-center px-4" style={{ fontSize: '0.7rem', color: 'rgba(239,217,177,0.25)', letterSpacing: '0.1em' }}>
+              Photo à ajouter
+            </p>
+          </div>
+          <span className="sr-only">{item.alt}</span>
+        </>
+      )}
     </motion.button>
   )
 }
@@ -96,14 +107,14 @@ function Lightbox({ item, items, onClose, onPrev, onNext }) {
             transition={{ duration: 0.3 }}
             className="rounded-2xl overflow-hidden"
             style={{
-              background: item.placeholderColor,
+              background: item.placeholderColor || '#151412',
               aspectRatio: item.aspect === 'portrait' ? '3/4' : item.aspect === 'landscape' ? '16/9' : '1',
               border: '1px solid rgba(184,132,61,0.15)',
             }}
           >
             {item.src ? (
               <img
-                src={item.src}
+                src={asset(item.src)}
                 alt={item.alt}
                 className="w-full h-full object-cover"
               />
@@ -227,7 +238,7 @@ export default function GallerySection() {
                 item.aspect === 'portrait' && i % 7 === 0 ? 'row-span-2' : ''
               }`}
             >
-              <PlaceholderCard item={item} onClick={openLightbox} />
+              <GalleryCard item={item} onClick={openLightbox} />
             </motion.div>
           ))}
         </div>

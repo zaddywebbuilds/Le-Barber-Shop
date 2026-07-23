@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
+import { asset } from '../utils/assets'
 
 const pillars = [
   {
@@ -127,111 +128,68 @@ export default function ExperienceSection() {
             </div>
           </div>
 
-          {/* Right — Visual */}
+          {/* Right — Photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
             className="relative"
           >
-            {/* Decorative frame */}
             <div
               className="relative rounded-2xl overflow-hidden"
               style={{
                 aspectRatio: '4/5',
-                background: 'linear-gradient(145deg, #2A201A 0%, #151412 100%)',
                 border: '1px solid rgba(184,132,61,0.15)',
-                boxShadow: '0 40px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(184,132,61,0.1)',
+                boxShadow: '0 40px 80px rgba(0,0,0,0.5)',
               }}
             >
-              {/* Atmospheric interior */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: 'radial-gradient(ellipse at 50% 30%, rgba(184,132,61,0.08) 0%, transparent 60%)',
-                }}
+              {/* Real haircut photo */}
+              <img
+                src={asset('images/gallery/coupe-degrade.jpg')}
+                alt="Résultat de coupe dégradé réalisé au Le Barber Shop, Évreux"
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
               />
 
-              {/* Barber pole decoration */}
+              {/* Subtle dark gradient at bottom for text legibility */}
               <div
-                className="absolute left-8 top-8 bottom-8 rounded-full overflow-hidden"
-                style={{ width: 8 }}
+                className="absolute bottom-0 left-0 right-0 pointer-events-none"
+                style={{ height: '45%', background: 'linear-gradient(to top, rgba(9,9,9,0.85), transparent)' }}
+              />
+
+              {/* Barber pole accent */}
+              <div
+                className="absolute left-5 top-5 bottom-5 rounded-full overflow-hidden"
+                style={{ width: 6 }}
               >
                 <div className="barber-pole h-full w-full" />
               </div>
 
-              {/* Central visual */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-12 gap-8">
-                {/* Large brass quote mark */}
-                <div
-                  className="font-display text-brass/15 leading-none select-none"
-                  style={{ fontSize: '8rem', marginTop: '-2rem' }}
-                  aria-hidden="true"
+              {/* Quote overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <p
+                  className="font-display italic font-light mb-3"
+                  style={{ fontSize: '1rem', color: 'var(--champagne)', lineHeight: 1.5 }}
                 >
-                  "
-                </div>
-
-                {/* Decorative scissors SVG */}
-                <div className="flex flex-col items-center gap-6">
-                  <svg
-                    viewBox="0 0 80 80"
-                    width="80"
-                    height="80"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    {/* Scissors icon */}
-                    <circle cx="20" cy="20" r="10" stroke="#B8843D" strokeWidth="1.5" fill="none" />
-                    <circle cx="60" cy="20" r="10" stroke="#B8843D" strokeWidth="1.5" fill="none" />
-                    <line x1="28" y1="27" x2="52" y2="60" stroke="#B8843D" strokeWidth="1.5" />
-                    <line x1="52" y1="27" x2="28" y2="60" stroke="#B8843D" strokeWidth="1.5" />
-                    <circle cx="40" cy="44" r="2.5" fill="#B8843D" />
-                  </svg>
-
-                  <div className="text-center">
-                    <p
-                      className="font-display italic font-light mb-2"
-                      style={{ fontSize: '1.1rem', color: 'var(--champagne)', lineHeight: 1.5 }}
+                  "Le soin du détail fait toute la différence."
+                </p>
+                <div className="flex items-center gap-6">
+                  {['Écoute', 'Précision', 'Style'].map((label) => (
+                    <span
+                      key={label}
+                      className="font-sans text-ivory/50"
+                      style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}
                     >
-                      "Le soin du détail fait toute la différence."
-                    </p>
-                    <div className="brass-divider mx-auto" />
-                  </div>
-
-                  {/* Three icons row */}
-                  <div className="flex items-center gap-8 mt-4">
-                    {['Écoute', 'Précision', 'Style'].map((item, i) => (
-                      <div key={item} className="flex flex-col items-center gap-2">
-                        <div
-                          className="rounded-full flex items-center justify-center"
-                          style={{
-                            width: 42,
-                            height: 42,
-                            border: '1px solid rgba(184,132,61,0.25)',
-                            background: 'rgba(184,132,61,0.06)',
-                          }}
-                        >
-                          <span className="text-brass" style={{ fontSize: '0.7rem' }}>◆</span>
-                        </div>
-                        <span
-                          className="font-sans text-ivory/40"
-                          style={{ fontSize: '0.65rem', letterSpacing: '0.12em' }}
-                        >
-                          {item}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                      {label}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              {/* Animated brass border */}
+              {/* Brass corner accent */}
               <div
                 className="absolute inset-0 rounded-2xl pointer-events-none"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(184,132,61,0.15) 0%, transparent 40%, rgba(184,132,61,0.08) 100%)',
-                }}
+                style={{ boxShadow: 'inset 0 1px 0 rgba(184,132,61,0.2)' }}
               />
             </div>
 

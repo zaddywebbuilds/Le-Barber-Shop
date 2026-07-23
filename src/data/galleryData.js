@@ -18,27 +18,34 @@ const placeholderColors = [
 export const galleryData = [
   {
     id: 1,
-    // src: '/images/gallery/coupe-01.jpg', // [PHOTO À AJOUTER]
-    placeholder: true,
-    placeholderColor: placeholderColors[0],
+    src: 'images/gallery/coupe-degrade.jpg',
+    placeholder: false,
     alt: 'Coupe dégradé — Le Barber Shop Évreux',
     category: 'coupe',
     aspect: 'portrait',
-    published: false,
+    published: true,
   },
   {
     id: 2,
-    // src: '/images/gallery/interieur-01.jpg', // [PHOTO À AJOUTER]
-    placeholder: true,
-    placeholderColor: placeholderColors[1],
-    alt: 'Intérieur du salon Le Barber Shop',
+    src: 'images/gallery/shopfront.jpg',
+    placeholder: false,
+    alt: 'Devanture du salon Le Barber Shop, Évreux',
     category: 'salon',
-    aspect: 'landscape',
-    published: false,
+    aspect: 'portrait',
+    published: true,
   },
   {
     id: 3,
-    // src: '/images/gallery/barbe-01.jpg', // [PHOTO À AJOUTER]
+    src: 'images/gallery/exterior.jpg',
+    placeholder: false,
+    alt: 'Le Barber Shop — 62 Avenue Aristide Briand, Évreux',
+    category: 'salon',
+    aspect: 'landscape',
+    published: true,
+  },
+  {
+    id: 4,
+    // src: 'images/gallery/barbe-01.jpg', // [PHOTO À AJOUTER]
     placeholder: true,
     placeholderColor: placeholderColors[2],
     alt: 'Entretien de barbe — Le Barber Shop',
@@ -47,18 +54,8 @@ export const galleryData = [
     published: false,
   },
   {
-    id: 4,
-    // src: '/images/gallery/outils-01.jpg', // [PHOTO À AJOUTER]
-    placeholder: true,
-    placeholderColor: placeholderColors[3],
-    alt: 'Outils de barbier — ciseaux et tondeuse',
-    category: 'outils',
-    aspect: 'square',
-    published: false,
-  },
-  {
     id: 5,
-    // src: '/images/gallery/coupe-02.jpg', // [PHOTO À AJOUTER]
+    // src: 'images/gallery/coupe-02.jpg', // [PHOTO À AJOUTER]
     placeholder: true,
     placeholderColor: placeholderColors[4],
     alt: 'Coupe structurée — Le Barber Shop',
@@ -68,17 +65,17 @@ export const galleryData = [
   },
   {
     id: 6,
-    // src: '/images/gallery/interieur-02.jpg', // [PHOTO À AJOUTER]
+    // src: 'images/gallery/interieur-02.jpg', // [PHOTO À AJOUTER]
     placeholder: true,
     placeholderColor: placeholderColors[5],
-    alt: 'Détail du fauteuil de barbier',
+    alt: 'Intérieur du salon Le Barber Shop',
     category: 'salon',
     aspect: 'square',
     published: false,
   },
   {
     id: 7,
-    // src: '/images/gallery/coupe-03.jpg', // [PHOTO À AJOUTER]
+    // src: 'images/gallery/coupe-03.jpg', // [PHOTO À AJOUTER]
     placeholder: true,
     placeholderColor: placeholderColors[6],
     alt: 'Coupe classique — Le Barber Shop',
@@ -88,7 +85,7 @@ export const galleryData = [
   },
   {
     id: 8,
-    // src: '/images/gallery/finitions-01.jpg', // [PHOTO À AJOUTER]
+    // src: 'images/gallery/finitions-01.jpg', // [PHOTO À AJOUTER]
     placeholder: true,
     placeholderColor: placeholderColors[7],
     alt: 'Finitions et contours précis',

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 import { businessConfig } from '../data/businessConfig'
+import { asset } from '../utils/assets'
 
 export default function AboutSection() {
   const [sectionRef, inView] = useInView({ threshold: 0.1 })
@@ -50,87 +51,27 @@ export default function AboutSection() {
                 }}
               />
 
-              {/* Main visual */}
+              {/* Main visual — shopfront photo */}
               <div
                 className="relative rounded-2xl overflow-hidden"
                 style={{
                   aspectRatio: '4/5',
-                  background: 'linear-gradient(145deg, #2A201A 0%, #1A1510 100%)',
                   border: '1px solid rgba(184,132,61,0.12)',
                 }}
               >
-                {/* Atmospheric interior */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: 'radial-gradient(ellipse at 60% 30%, rgba(184,132,61,0.07) 0%, transparent 60%)',
-                  }}
+                <img
+                  src={asset('images/gallery/shopfront.jpg')}
+                  alt="Devanture du salon Le Barber Shop, 62 Avenue Aristide Briand, Évreux"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
                 />
 
-                {/* SVG Tool arrangement */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <svg
-                    viewBox="0 0 280 350"
-                    width="80%"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-label="Outils de barbier arrangés sur surface en noyer"
-                  >
-                    {/* Dark walnut surface */}
-                    <rect x="20" y="200" width="240" height="6" rx="3" fill="#3A2820" />
-                    <rect x="30" y="206" width="220" height="2" rx="1" fill="#2A1E18" opacity="0.6" />
-
-                    {/* Straight razor */}
-                    <rect x="40" y="110" width="80" height="18" rx="4" fill="#C0A060" />
-                    <rect x="38" y="113" width="20" height="12" rx="3" fill="#2A201A" stroke="#B8843D" strokeWidth="0.8" />
-                    <line x1="58" y1="119" x2="120" y2="119" stroke="#D4AF70" strokeWidth="1.5" />
-                    <path d="M118 111 L125 119 L118 127Z" fill="#C0A060" />
-
-                    {/* Comb */}
-                    <rect x="155" y="80" width="85" height="14" rx="3" fill="#B8843D" />
-                    {Array.from({ length: 20 }).map((_, i) => (
-                      <rect
-                        key={i}
-                        x={158 + i * 4}
-                        y="94"
-                        width="2.5"
-                        height="18"
-                        rx="1"
-                        fill="#A07030"
-                      />
-                    ))}
-
-                    {/* Scissors */}
-                    <g transform="translate(100, 140) rotate(-30)">
-                      <line x1="0" y1="-40" x2="0" y2="40" stroke="#C0A060" strokeWidth="3" strokeLinecap="round" />
-                      <line x1="-15" y1="-40" x2="15" y2="40" stroke="#C0A060" strokeWidth="3" strokeLinecap="round" />
-                      <circle cx="-10" cy="35" r="7" stroke="#B8843D" strokeWidth="2" fill="none" />
-                      <circle cx="10" cy="35" r="7" stroke="#B8843D" strokeWidth="2" fill="none" />
-                    </g>
-
-                    {/* Clipper */}
-                    <rect x="170" y="145" width="55" height="90" rx="8" fill="#1A1510" />
-                    <rect x="165" y="140" width="65" height="18" rx="5" fill="#B8843D" opacity="0.8" />
-                    <rect x="175" y="160" width="45" height="3" rx="1" fill="#B8843D" opacity="0.3" />
-                    <rect x="175" y="168" width="45" height="3" rx="1" fill="#B8843D" opacity="0.3" />
-                    <rect x="175" y="176" width="45" height="3" rx="1" fill="#B8843D" opacity="0.3" />
-
-                    {/* Small detail elements */}
-                    <circle cx="60" cy="175" r="12" stroke="#B8843D" strokeWidth="1" fill="rgba(184,132,61,0.06)" />
-                    <circle cx="60" cy="175" r="6" stroke="#B8843D" strokeWidth="0.8" fill="none" opacity="0.5" />
-
-                    {/* Surface shadows */}
-                    <ellipse cx="100" cy="203" rx="60" ry="5" fill="rgba(0,0,0,0.3)" />
-                    <ellipse cx="197" cy="203" rx="50" ry="4" fill="rgba(0,0,0,0.25)" />
-                  </svg>
-                </div>
-
-                {/* Bottom gradient */}
+                {/* Bottom gradient for text legibility */}
                 <div
                   className="absolute bottom-0 left-0 right-0"
                   style={{
-                    height: '40%',
-                    background: 'linear-gradient(to top, rgba(26,21,16,0.9), transparent)',
+                    height: '45%',
+                    background: 'linear-gradient(to top, rgba(9,9,9,0.88), transparent)',
                   }}
                 />
 
