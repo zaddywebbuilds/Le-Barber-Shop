@@ -29,6 +29,7 @@ export const businessConfig = {
     postalCode: '27000',
     country: 'France',
     full: '62 Avenue Aristide Briand, 27000 Évreux',
+    plusCode: '248F+XG Évreux, France',
   },
 
   // ─── Coordonnées GPS ─────────────────────────────────────
@@ -43,7 +44,7 @@ export const businessConfig = {
 
   // ─── Contact ─────────────────────────────────────────────
   // Remplacez null par le numéro de téléphone réel, ex: '+33 2 32 00 00 00'
-  phone: null, // [PHONE NUMBER TO BE CONFIRMED]
+  phone: '+33 6 27 01 55 91',
 
   // ─── Horaires d'ouverture ─────────────────────────────────
   // Remplacez null par les horaires réels

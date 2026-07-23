@@ -231,12 +231,10 @@ export default function Hero() {
                     ].join(', '),
                   }}
                 >
-                  <video
-                    src={asset('heropage.mp4')}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
+                  <img
+                    src={asset('heropage.svg')}
+                    alt=""
+                    aria-hidden="true"
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{ transform: 'scale(1.06)' }}
                   />
