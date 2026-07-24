@@ -44,24 +44,6 @@ export const galleryData = [
     aspect: 'portrait',
     published: true,
   },
-  {
-    id: 6,
-    src: 'videos/video-01.svg',
-    type: 'image',
-    alt: 'Coupe et finitions — Le Barber Shop Évreux',
-    category: 'coupe',
-    aspect: 'portrait',
-    published: true,
-  },
-  {
-    id: 7,
-    src: 'videos/video-02.svg',
-    type: 'image',
-    alt: 'Dégradé technique de coupe — Le Barber Shop Évreux',
-    category: 'coupe',
-    aspect: 'portrait',
-    published: true,
-  },
 ]
 
 export const getPublishedGallery = () =>
